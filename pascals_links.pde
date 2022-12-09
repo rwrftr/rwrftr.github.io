@@ -1,0 +1,169 @@
+marble one; 
+
+//variable declarations
+
+boolean gate = true;
+int grav, wait = 0;
+int term = 50;
+boolean bodge, linktoggle = false;
+
+public void setup() {
+  one = new marble();
+  size (700, 600);
+  //size (1500,1500);
+  linktoggle = false;
+}
+
+public void draw() {
+  background(255);
+  //floor
+  if (one.Ypos < 600) {
+    one.fall();
+  } 
+
+  one.show();
+
+  //the pins
+
+  int pinX = 0;
+  int pinY = 0;
+  
+  for (int i = 0; i < 7; i++) {
+    for (int j = 2; j < i+1; j++) {
+
+      pinX = (j*width / (i + 2));
+      pinY = (50 + (i * 50));
+
+      circle(pinX, pinY, 20);
+      
+      //collision check
+      
+      if ((dist(pinX, pinY, one.Zpos, one.Ypos) < 20) && bodge == false ) {
+        one.bounce();
+        println("bonk");
+      }
+    }
+  }
+
+  //creating buckets
+
+  for (int i = 0; i < 6; i++) {
+    rect(130 + i*85, 400, 10, 300);
+  }
+
+  //gate
+
+  if (gate) {
+    rect(10, 80, (width-20), 10);
+  }
+
+  //so it doesnt constantly bounce
+
+  if (bodge) {
+    wait++;
+  }
+  if (wait>1) {
+    bodge = false;
+    wait = 0;
+  }
+  //link serving
+
+  links();
+  
+}
+
+void keyPressed() {
+  if (key == 'a') {
+    setup();
+    gate = false;
+    one.start();
+  }
+  if (key == 'b') {
+    one.bounce();
+  }
+}
+class marble {
+
+  public int speed, speedX, speedY, velX, velY, Xpos, Ypos, Zpos;
+
+  marble() {
+    Zpos = 0;
+    Xpos = (700/2);
+    Ypos = 60;
+    speedX = 0;
+    speedY = 0;
+    velX = 0;
+    velY = 0;
+    speed = 0;
+  }
+
+  void show() {
+    //println(speedX);
+    //calculate pos
+    Zpos = Xpos + speedX - speedY;
+    //Wall left
+    if (Zpos < 140) {
+      velX = 0;
+      velY = 3;
+      Zpos = 140;
+    }
+    //Wall right
+    if (Zpos > 560) {
+      velX = 3;
+      velY = 0;
+      Zpos = 560;
+    }
+    circle(Zpos, Ypos, 30);
+  }
+
+  void start() {
+    speedX = 0;
+    speedY = 0;
+    velX = 0;
+    velY = 0;
+    speed = 1;
+    grav = 1;
+  }
+
+  void fall() {
+
+    if (speed < term) {
+      speed += grav;
+    }
+
+    Ypos += speed;
+    speedY += velY;
+    speedX += velX;
+  }
+
+  void bounce() {
+    speed -=(speed * 1.8);
+    velX = (int)(Math.random()*10)-3;
+    velY = (int)(Math.random()*10)-3;
+    bodge = true;
+  }
+}
+
+public void links(){
+if (one.Ypos > 580 && linktoggle == false) {
+    if (one.Zpos >= 140 && one.Zpos < 215) {
+      link("https://rwrftr.github.io/VirtualPet/");
+    }
+    if (one.Zpos >= 215 && one.Zpos < 300) {
+      link("https://rwrftr.github.io/Scales/");
+    }
+    if (one.Zpos >= 300 && one.Zpos < 385) {
+      link("https://rwrftr.github.io/Dice/");
+    }
+    if (one.Zpos >= 385 && one.Zpos < 470) {
+      link("https://rwrftr.github.io/Lightning/");
+    }
+    if (one.Zpos >= 470 && one.Zpos <= 560) {
+      link("https://rwrftr.github.io/Chemotaxis/");
+    }
+
+    //so that it does not spam your computer with links
+
+    linktoggle = true;
+  }
+}

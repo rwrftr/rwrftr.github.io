@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles.css">
+    <title>The Second Page!</title>
+    <script src="/processing.js"></script>
+</head>
+
+<body>
+
+    <!-- Side navigation -->
+    <div class="sidenav">
+        <a href="/pages/index.html">Home</a>
+        <div class="sidenav2">
+            <a href="./page2.html">Asteroids</a>
+        </div>
+        <a href="/pages/page3.html">Page3</a>
+        <a href="#">Page4</a>
+    </div>
+
+    <!-- Page content -->
+    <div class="main">
+
+        <h1>Asteroids Project</h1>
+
+        <p class="keybinds">
+            <span style="color: black">'WASD'</span> to move <br>
+            <span style="color: black">'SPACE'</span> to shoot <br>
+            <span style="color: black">'Q'</span> to teleport <br>
+            <span style="color: black">'R'</span> to summon Asteroids <br>
+        </p>
+        
+        <section id="content">
+            <div class="processing">
+            <canvas id="AsteroidsGame" data-processing-sources="AsteroidsGame.pde Asteroid.pde Bullet.pde Floater.pde Spaceship.pde Star.pde">
+            </canvas>
+            </div>
+        </section>
+    </div>
+</body></html>
