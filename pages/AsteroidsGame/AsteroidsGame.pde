@@ -27,6 +27,7 @@ public void draw() {
   background(0);
 
   drawStars(); //self explanatory
+
   KeyCommands(); //processes keys
   BulletHit(); //checks collission for bullets
 
@@ -65,8 +66,10 @@ public void keyPressed()
     frank.add( new Asteroid());
   }
   if (key == ' ') {
-    if(launch == false){blah = 10;}
-    
+    if (launch == false) {
+      blah = 10;
+    }
+
     launch = true;
   }
 }
@@ -90,7 +93,7 @@ public void keyReleased()
   if (key == 's') {
     backup = false;
   }
-   if (key == ' ') {
+  if (key == ' ') {
     launch = false;
   }
 }
