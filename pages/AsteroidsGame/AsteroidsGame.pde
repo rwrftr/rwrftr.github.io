@@ -11,8 +11,9 @@ ArrayList <Bullet> sammy = new ArrayList <Bullet>();
 
 public void setup() 
 {
-  size(1000, 400);
+  size(1280, 720);
   background(0);
+
   //array for stars
   for (int i = 0; i < stars.length; i++) {
     stars[i] = new Star();
@@ -21,84 +22,21 @@ public void setup()
   for (int i = 0; i < 10; i++) {
     frank.add( new Asteroid());
   }
-  //your code here
 }
-public void draw() 
-{
+public void draw() { 
   background(0);
-  for (int i = 0; i < stars.length; i++) {
-    stars[i].show();
-  }
-  //these if statements are the keyboard inputs
-  //the keyboard inputs toggle a boolean until they are lifted.
-  //when that boolean = true, this behavior happens
 
-  if (rightturn == true) {
-    roger.turn(5);
-  }
-  if (leftturn == true) {
-    roger.turn(-5);
-  }
-  if (forward == true) {
-    roger.accelerate(0.1);
-  }
-  if (backup == true) {
-    roger.accelerate(-0.1);
-  }
+  drawStars(); //self explanatory
+  KeyCommands(); //processes keys
+  BulletHit(); //checks collission for bullets
 
-  if (launch && blah % 10 == 0) {
-    sammy.add(new Bullet(roger));
-  }
+  roger.move(); //move spaceship
+  roger.show(); //show spaceship
 
-  if (sammy.size() >= 1) {
-    for (int i = sammy.size() -1; i > 0; i--) {
-      for (int z = frank.size() -1; z > 0; z--) {
-        if (dist(sammy.get(i).getCenterX(), sammy.get(i).getCenterY(), frank.get(z).getCenterX(), frank.get(z).getCenterY()) < 20) {
-          frank.remove(z);
-          sammy.remove(i);
-          break;
-        }
-      }
-    }
-  }
-
-  for (int i = sammy.size() -1; i > 0; i--) {
-    sammy.get(i).show();
-    sammy.get(i).move();
-  }
-  
-  //move and show the spaceship
-  roger.move();
-  roger.show();
-  
-  //move and show all of the asteroids
-  for (int i = frank.size() -1; i > 0; i--) {
-    frank.get(i).move();
-    if ((dist(frank.get(i).getCenterX(), frank.get(i).getCenterY(), roger.getCenterX(), roger.getCenterY() ) < 20) && destroybuffer == false) {
-      roger.bounce(i);
-      frank.remove(i);
-      destroybuffer = true;
-    } else {
-      for (int z = frank.size() -1; z > 0; z--) { 
-        if ((dist(frank.get(i).getCenterX(), frank.get(i).getCenterY(), frank.get(z).getCenterX(), frank.get(z).getCenterY() ) < 20) && i != z) {          
-          frank.get(i).bounce(z);
-        }
-      }
-      frank.get(i).show();
-    }
-  }
-  destroybuffer = false;
-  if (charge == true) {
-    if (storedenergy < (width-20)) {
-      storedenergy+= 4;
-    }
-    fill(36, 234, 240);
-    rect(10, 10, storedenergy, 30, 20 );
-  }
+  AsteroidCrash(); //check asteroid collision and show them
+  chargeFunction();  //do charge stuff
   blah++;
 }
-
-//when input
 
 public void keyPressed()
 {
@@ -152,7 +90,87 @@ public void keyReleased()
   if (key == 's') {
     backup = false;
   }
-  if (key == ' ') {
+   if (key == ' ') {
     launch = false;
+  }
+}
+
+public void KeyCommands() {
+  //these if statements are the keyboard inputs
+  //the keyboard inputs toggle a boolean until they are lifted.
+  //when that boolean = true, this behavior happens
+  if (rightturn == true) {
+    roger.turn(5);
+  }
+  if (leftturn == true) {
+    roger.turn(-5);
+  }
+  if (forward == true) {
+    roger.accelerate(0.1);
+  }
+  if (backup == true) {
+    roger.accelerate(-0.1);
+  }
+
+  if (launch && blah % 10 == 0) {
+    sammy.add(new Bullet(roger));
+  }
+}
+
+//collision for the bullet and asteroids
+public void BulletHit() {
+  if (sammy.size() >= 1) {
+    for (int i = sammy.size() -1; i > 0; i--) {
+      for (int z = frank.size() -1; z > 0; z--) {
+        if (dist(sammy.get(i).getCenterX(), sammy.get(i).getCenterY(), frank.get(z).getCenterX(), frank.get(z).getCenterY()) < 20) {
+          frank.remove(z);
+          sammy.remove(i);
+          break;
+        }
+      }
+    }
+  }
+
+  for (int i = sammy.size() -1; i > 0; i--) {
+    sammy.get(i).show();
+    sammy.get(i).move();
+  }
+}
+
+public void AsteroidCrash() {
+
+  for (int i = frank.size() -1; i > 0; i--) {
+    frank.get(i).move();
+    if ((dist(frank.get(i).getCenterX(), frank.get(i).getCenterY(), roger.getCenterX(), roger.getCenterY() ) < 20) && destroybuffer == false) {
+      roger.bounce(i);
+      frank.remove(i);
+      destroybuffer = true;
+    } else {
+      for (int z = frank.size() -1; z > 0; z--) { 
+        if ((dist(frank.get(i).getCenterX(), frank.get(i).getCenterY(), frank.get(z).getCenterX(), frank.get(z).getCenterY() ) < 20) && i != z) {          
+          frank.get(i).bounce(z);
+        }
+      }
+      frank.get(i).show();
+    }
+  }
+  destroybuffer = false;
+}
+
+public void chargeFunction() {
+
+  if (charge == true) {
+    if (storedenergy < (width-20)) {
+      storedenergy+= 4;
+    }
+    fill(36, 234, 240);
+    rect(10, 10, storedenergy, 30, 20 );
+  }
+}
+
+public void drawStars() {
+
+  for (int i = 0; i < stars.length; i++) {
+    stars[i].show();
   }
 }
