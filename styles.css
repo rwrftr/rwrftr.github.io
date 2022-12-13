@@ -1,31 +1,51 @@
 :root {
-  --navWidth: 160px; /* the width of the navbar and the padding left of the content */
-  --white: #ffffff;
+    --navWidth: 160px;
+    /* the width of the navbar and the padding left of the content */
+    --white: #ffffff;
 }
 
 body {
- /* background-color: powderblue;*/
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    /* background-color: powderblue;*/
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
+
 h1 {
-  /*color: blue;*/
+    /*color: blue;*/
 }
+
 p {
- /* color: red; */
+    /* color: red; */
 }
+
 .myDiv {
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-    width = "50"
-    text-align: left
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    margin-left: var(--navWidth);
+    /* Same as the width of the sidebar */
+    margin-right: 600px;
+    padding: 0px 10px;
+
+}
+
+.myDiv2 {
+    
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    margin-left: 635px;
+    position: relative;
+    /* Same as the width of the sidebar */
+    padding: 0px 10px;
+    top: -273px;
     
 }
 
-.mynewdiv {
-    
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-    width = "50"
-    text-align: right
-    
+.v1 {
+    border-left: 7px solid black;
+    height: 500px;
+    border-left: 6px solid black;
+    height: 800px;
+    position: absolute;
+    left: 640px;
+    margin-left: px;
+    top: 0;
 }
 
 #content {
@@ -36,60 +56,68 @@ p {
 
 /* The sidebar menu */
 .sidenav {
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: var(--navWidth); /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-  background-color: #111; /* Black */
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 20px;
+    height: 100%;
+    /* Full-height: remove this if you want "auto" height */
+    width: var(--navWidth);
+    /* Set the width of the sidebar */
+    position: fixed;
+    /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1;
+    /* Stay on top */
+    top: 0;
+    /* Stay at the top */
+    left: 0;
+    background-color: #111;
+    /* Black */
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    padding-top: 20px;
 }
 
 /* The navigation menu links */
 .sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
 }
 
 /* hopefully this will represent which page you are currently on */
 
 .sidenav2 a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #a19d9d;
-  background-color: #303030; 
-  display: block;
-    
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #a19d9d;
+    background-color: #303030;
+    display: block;
+
 }
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
-  color: #f1f1f1;
+    color: #f1f1f1;
 }
 
 /* Style page content */
 .main {
-  margin-left: var(--navWidth); /* Same as the width of the sidebar */
-  padding: 0px 10px;
+    margin-left: var(--navWidth);
+    /* Same as the width of the sidebar */
+    padding: 0px 10px;
 }
 
 .processing {
-    
+
     top: -20px;
 }
 
 .main h1 {
-    
+
     position: relative;
-    top: 0px; 
-    padding-top: 0px;  
-    
+    top: 0px;
+    padding-top: 0px;
+
 }
 
 .keybinds {
@@ -97,16 +125,19 @@ p {
     font-style: italic;
     top: -20px;
     color: darkgrey;
-padding-bottom: 0px;
+    padding-bottom: 0px;
     margin-bottom: 0px;
-    
-    
+
+
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
 }
-
-
